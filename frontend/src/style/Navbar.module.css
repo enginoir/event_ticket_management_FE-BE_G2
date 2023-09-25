@@ -1,0 +1,58 @@
+.navbar {
+  height: 85px;
+  
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+
+  border-width: 1px;
+  border-style: solid;
+  border-color: gray;
+
+  padding: 0 10%;
+}
+
+.rightSec {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+
+  gap: 15px;
+}
+
+.searchBar {
+  height: 36px;
+  padding-left: 10px;
+
+  border-width: 1px;
+  border-radius: 10px;
+  border-style: solid;
+  border-color: #1450A3;;
+}
+
+.loginBtn {
+  height: 40px;
+  width: 80px;
+  margin-right: 5px;
+
+  background-color: white;
+  color: #1450A3;
+
+  border-width: 1px;
+  border-radius: 10px;
+  border-color: #1450A3;
+}
+
+.registerBtn {
+  height: 40px;
+  width: 80px;
+
+  background-color: #1450A3;
+  color: white;
+
+  border-width: 1px;
+  border-radius: 10px;
+  border-color: #1450A3;
+}
