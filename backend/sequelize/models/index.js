@@ -1,5 +1,4 @@
 'use strict';
-
 const fs = require('fs');
 const path = require('path');
 const Sequelize = require('sequelize');
@@ -39,5 +38,15 @@ Object.keys(db).forEach(modelName => {
 
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
+db.User = require('./user')(sequelize, Sequelize);
+db.Location = require('./location')(sequelize, Sequelize);
+
+db.Location.hasMany(db.Event, {
+  foreignKey: 'location',
+});
+
+// db.User.hasMany(db.Event, { foreignKey: 'event_creator_userid' });
+// db.User.hasMany(db.Transaction, { foreignKey: 'user_id' });
+
 
 module.exports = db;
