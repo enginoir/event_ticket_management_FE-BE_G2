@@ -1,10 +1,11 @@
 import axios from "axios";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 const EventCreation = () => {
   const [eventData, setEventData] = useState({
     id: "",
-    user_id: 1,
+    user_id: "",
     name: "",
     start_date: "",
     end_date: "2023-12-12",
@@ -13,8 +14,8 @@ const EventCreation = () => {
     location: "",
     img_url: "/src/assets/img/event-7.jpg",
     desc: "",
-    quota: 50,
-    price: 10000,
+    quota: "",
+    price: "",
   });
 
   function handleFileUpload(e) {
@@ -50,7 +51,8 @@ const EventCreation = () => {
       await axios.post("http://localhost:3000/events", eventData);
       alert("Data Berhasil Ditambahkan!");
 
-      e.target.reset();
+      // e.target.reset();
+      // history.push("/dashboard");
     } catch (error) {
       console.error("Terjadi kesalahan saat menambahkan data acara:", error);
     }
@@ -148,7 +150,6 @@ const EventCreation = () => {
                         />
                       </div>
                     </div>
-                    <p> or drag and drop </p>
                     <p className="text-xs leading-5 text-gray-600">
                       PNG, JPG, GIF up to 10MB
                     </p>
@@ -174,7 +175,6 @@ const EventCreation = () => {
                 <label className="sr-only" htmlFor="message">
                   Event Description
                 </label>
-
                 <textarea
                   className="w-full rounded-lg border-gray-200 p-3 text-sm shadow-md"
                   name="desc"
@@ -184,15 +184,19 @@ const EventCreation = () => {
                   onChange={setData}
                 ></textarea>
               </div>
-
-              <div className="mt-4">
-                <button
-                  type="submit"
-                  className="inline-block w-full rounded-lg bg-primaryColor hover:shadow-2xl px-5 py-3 font-medium text-white sm:w-auto shadow-md"
-                >
-                  Create Event
-                </button>
-              </div>
+              <Link to={"/dashboard"}>
+                <div className="mt-4">
+                  <button
+                    onClick={() => {
+                      alert("Thank you, Your event has been created");
+                    }}
+                    type="file"
+                    className="inline-block w-full rounded-lg bg-primaryColor hover:shadow-2xl px-5 py-3 font-medium text-white sm:w-auto shadow-md"
+                  >
+                    Create Event
+                  </button>
+                </div>
+              </Link>
             </form>
           </div>
         </div>
