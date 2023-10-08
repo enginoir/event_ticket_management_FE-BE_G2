@@ -3,14 +3,17 @@ const cors = require('cors');
 const mysql = require('mysql2');
 const app = express();
 const PORT = 5500;
+const router = require("./route/index");
+// var corOptions = {origin: 'https://localhost:8081'};
 
+//middleware
 app.use(cors())
 app.use(express.json());
-
+app.use(express.urlencoded({ extended: true }));
 
 //Database Configuration
-// const db = require('./sequlize/models');
-// db.sequelize.sync({ alter: true });
+const db = require('./sequlize/models');
+
 const db = mysql.createConnection({
     host: '127.0.0.1',
     user: 'root',
@@ -40,8 +43,10 @@ app.get('/users', (req, res) => {
 
 
 // Define routes
-const { authRoutes } = require('./route');
-app.use('/auth', authRoutes);
+const router = require('./route');
+app.use('/promotion', router.promotionRouter);
+app.use(`/users`, router.userRouter);
+app.use(`/locations`, router.locationRouter);
 
 
 // Start the server
