@@ -1,8 +1,18 @@
 const express = require("express");
 const route = express.Router();
-const { Events } = require("../sequlize/models");
+const Events = require("../sequelize/models");
 const uploader = require("../middlewares/uploader");
 const uploaderController = require("../controller/uploaderController");
+
+route.get("/events", async (req, res) => {
+  try {
+    const events = await Events.findAll();
+    res.json(events);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+});
 
 route.patch(
   "/:id",
