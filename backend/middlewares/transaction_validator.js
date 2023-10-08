@@ -3,7 +3,6 @@ const { body, validationResult } = require(`express-validator`);
 const transactionValidationRules = () => {
   return [
     body("event_id").isNumeric().withMessage("event id must be a number"),
-    
   ];
 };
 
