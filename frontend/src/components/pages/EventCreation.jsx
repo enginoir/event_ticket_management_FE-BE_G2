@@ -51,8 +51,8 @@ const EventCreation = () => {
       await axios.post("http://localhost:3000/events", eventData);
       alert("Data Berhasil Ditambahkan!");
 
-      // e.target.reset();
-      // history.push("/dashboard");
+      e.target.reset();
+      history.push("/dashboard");
     } catch (error) {
       console.error("Terjadi kesalahan saat menambahkan data acara:", error);
     }
