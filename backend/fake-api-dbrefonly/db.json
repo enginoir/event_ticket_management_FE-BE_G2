@@ -302,48 +302,6 @@
       "desc": "Pantang tidur sebelum selesai, harus lebih cepat daripada pasukan Bandung Bondowoso dalam membangun candi",
       "quota": 50,
       "price": 200000
-    },
-    {
-      "id": 22,
-      "user_id": 1,
-      "name": "",
-      "start_date": "",
-      "end_date": "2023-12-12",
-      "start_time": "08:00 AM",
-      "end_time": "12:00 AM",
-      "location": "",
-      "img_url": "/src/assets/img/event-7.jpg",
-      "desc": "",
-      "quota": 50,
-      "price": 10000
-    },
-    {
-      "id": 23,
-      "user_id": 1,
-      "name": "",
-      "start_date": "",
-      "end_date": "2023-12-12",
-      "start_time": "08:00 AM",
-      "end_time": "12:00 AM",
-      "location": "",
-      "img_url": "/src/assets/img/event-7.jpg",
-      "desc": "",
-      "quota": 50,
-      "price": 10000
-    },
-    {
-      "id": 24,
-      "user_id": 1,
-      "name": "",
-      "start_date": "",
-      "end_date": "2023-12-12",
-      "start_time": "08:00 AM",
-      "end_time": "12:00 AM",
-      "location": "",
-      "img_url": "/src/assets/img/event-7.jpg",
-      "desc": "",
-      "quota": 50,
-      "price": 10000
     }
   ],
   "transactions": [

@@ -6,12 +6,12 @@ const SignUp = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  navigate = useNavigate();
+  const navigate = useNavigate();
 
   const submitSignup = () => {
     if (fullName && email && password && confirmPassword) {
       if (password === confirmPassword) {
-        navigator("/choose-role");
+        navigate("/choose-role");
       } else {
         console.log("Password not match!");
       }
