@@ -27,5 +27,8 @@
     "nodemailer": "^6.9.5",
     "sequelize": "^6.33.0",
     "sharp": "^0.32.6"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
   }
 }
