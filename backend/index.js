@@ -6,15 +6,16 @@ const PORT = 5500;
 const router = require("./route/index");
 // var corOptions = {origin: 'https://localhost:8081'};
 
-//middleware
+// Middleware
 app.use(cors())
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-//Database Configuration
-const db = require('./sequlize/models');
+// Database Configuration for Sequelize
+const sequelize = require('./sequlize/models');
 
-const db = mysql.createConnection({
+// MySQL Connection Configuration
+const dbConnection = mysql.createConnection({
     host: '127.0.0.1',
     user: 'root',
     password: null,
@@ -24,8 +25,8 @@ const db = mysql.createConnection({
     multipleStatements: true,
 })
 
-db.connect((err) => {
-    if (err){
+dbConnection.connect((err) => {
+    if (err) {
         return console.error(`Error: ${err.message}`);
     }
     console.log(`Connected to MySQL Server`)
@@ -33,7 +34,7 @@ db.connect((err) => {
 
 app.get('/users', (req, res) => {
     let scriptQuery = `Select * from users;`
-    db.query(scriptQuery, (err, results) =>{
+    dbConnection.query(scriptQuery, (err, results) => {
         if (err) {
             res.status(500).send(err)
         }
@@ -41,9 +42,8 @@ app.get('/users', (req, res) => {
     })
 })
 
-
 // Define routes
-const router = require('./route');
+// const router = require('./route');
 app.use('/promotion', router.promotionRouter);
 app.use(`/users`, router.userRouter);
 app.use(`/locations`, router.locationRouter);

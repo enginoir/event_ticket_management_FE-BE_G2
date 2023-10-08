@@ -54,7 +54,7 @@ sequelize
 
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
-db.promotion = require("./promotionModels")(sequelize, DataTypes);
+db.promotion = require("./promotion")(sequelize, Sequelize);
 db.User = require("./user")(sequelize, Sequelize);
 db.Location = require("./location")(sequelize, Sequelize);
 db.Events = require("./events")(sequelize, Sequelize);
@@ -72,6 +72,20 @@ db.Photo_event.belongsTo(db.Events, { foreignKey: "eventsid" });
 db.User.hasMany(db.Events, { foreignKey: "event_userid" });
 db.User.hasMany(db.Transaction, { foreignKey: "user_id" });
 db.Events.hasMany(db.Photo_event, { foreignKey: "eventsid" });
+db.Location.hasMany(db.Event, {
+  foreignKey: "location",
+});
+db.Event.belongsTo(db.Location, { foreignKey: "location" });
+db.User.hasMany(db.Event, { foreignKey: "event_creator_userid" });
+db.Event.belongsTo(db.User, { foreignKey: "event_creator_userid" });
+db.User.hasMany(db.Ticket, { foreignKey: "userid" });
+db.User.hasMany(db.Transaction, { foreignKey: "user_id" });
+db.Transaction.belongsTo(db.User, { foreignKey: "user_id" });
+
+db.Transaction.belongsTo(db.Event, { foreignKey: "event_id" });
+db.Event.hasMany(db.Transaction, { foreignKey: "event_id" });
+
+db.Transaction.associate(db);
 
 db.sequelize.sync({ force: false }).then(() => {
   console.log("yes re-sync done!");

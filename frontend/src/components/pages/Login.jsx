@@ -1,5 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
 import React, { useState } from "react";
+import { signInWithGoogle } from "../../firebase";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -121,7 +122,12 @@ const Login = () => {
                 <b> Sign Up Here </b>
               </Link>
             </p>
-
+            <button
+              className="inline-block rounded-lg bg-red-500 px-5 py-3 text-sm font-medium text-white ml-3"
+              onClick={signInWithGoogle}
+            >
+              Login with Google
+            </button>
             <button
               type="submit"
               className="inline-block rounded-lg bg-blue-500 px-5 py-3 text-sm font-medium text-white"
