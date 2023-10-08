@@ -6,6 +6,7 @@ import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import Search from '../atoms/Search';
 const Navbar = (props) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false)
   const [user, setUser] = useState(null)
@@ -19,6 +20,7 @@ const Navbar = (props) => {
     }
     getData()
   },[])
+  const [searchValue, setSearchValue] = useState('');
   useEffect(()=> {
     if(localStorage.getItem('id') === "true") {
       setIsAuthenticated(true)
@@ -42,6 +44,7 @@ const Navbar = (props) => {
             </div>
 
             <div className="md:flex md:items-center md:gap-12">
+              <Search searchValue={searchValue} setSearchValue={setSearchValue} />
               <nav aria-label="Global" className="hidden md:block">
                 <ul className="flex items-center gap-6 text-sm">
                   <li>
