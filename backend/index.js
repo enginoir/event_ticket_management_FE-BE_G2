@@ -47,7 +47,8 @@ const router = require('./route');
 app.use('/promotion', router.promotionRouter);
 app.use(`/users`, router.userRouter);
 app.use(`/locations`, router.locationRouter);
-
+app.use("/events", eventsRouter);
+app.use("/upload", uploadRouter);
 
 // Start the server
 sequelize.sync().then(() => {
