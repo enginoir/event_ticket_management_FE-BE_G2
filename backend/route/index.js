@@ -1,7 +1,11 @@
+const userRouter = require("./user_router");
+const locationRouter = require("./location_router.js");
 const eventRouter = require("./eventsRouter");
 const uploadRouter = require("./uploadRouter");
 
 module.exports = {
-  eventRouter: eventRouter,
+    userRouter: userRouter,
+    locationRouter: locationRouter,
+    eventRouter: eventRouter,
   uploadRouter: uploadRouter,
 };
