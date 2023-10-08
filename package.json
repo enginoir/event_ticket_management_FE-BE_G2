@@ -1,0 +1,14 @@
+{
+  "name": "ticketnexa",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+      "start-backend": "cd backend && npm run dev",
+      "start-frontend": "cd frontend && npm start",
+      "start-concurrently": "concurrently \"npm run start-backend\" \"npm run start-frontend\""
+    },
+  "devDependencies": {
+    "concurrently": "^8.2.1"
+  }
+}
