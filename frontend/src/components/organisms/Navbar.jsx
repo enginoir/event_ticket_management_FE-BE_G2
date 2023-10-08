@@ -1,12 +1,10 @@
 import React, {useState} from 'react'
-import { Link } from "react-router-dom";
+import { NavLink, Link, useLocation, useNavigate } from "react-router-dom";
 import { FaUserCircle, FaCoins } from "react-icons/fa";
-import { NavLink } from 'react-router-dom';
 import { useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Search from '../atoms/Search';
+
 const Navbar = (props) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false)
   const [user, setUser] = useState(null)
@@ -39,7 +37,7 @@ const Navbar = (props) => {
           <div className="flex h-16 items-center justify-between">
             <div className="flex-1 md:flex md:items-center md:gap-12">
               <a className="block text-black w-fit" href="/">
-                <h2 className="font-bold text-3xl">PASSIFY</h2>
+                <h2 className="font-bold text-3xl">TICKETNEXA</h2>
               </a>
             </div>
 
@@ -47,22 +45,26 @@ const Navbar = (props) => {
               <Search searchValue={searchValue} setSearchValue={setSearchValue} />
               <nav aria-label="Global" className="hidden md:block">
                 <ul className="flex items-center gap-6 text-sm">
-                  <li>
-                    <div className="text-gray-500 transition hover:text-gray-500/75">
-                    <Link to="/create-event"> Create Event </Link>
-                    </div>
-                  </li>
-                  <li>
-                    <div className="text-gray-500 transition hover:text-gray-500/75">
-                      <Link to="/explore"> Explore </Link>
-                    </div>
-                  </li>
+                  {isAuthenticated && (
+                    <>
+                      <li>
+                        <div className="text-gray-500 transition hover:text-gray-500/75">
+                          <Link to="/create-event">Create Event</Link>
+                        </div>
+                      </li>
+                      <li>
+                        <div className="text-gray-500 transition hover:text-gray-500/75">
+                          <Link to="/explore">Explore</Link>
+                        </div>
+                      </li>
+                    </>
+                  )}
                 </ul>
               </nav>
 
               <div className="flex items-center gap-4">
                 { !isAuthenticated ?
-                 <div className="sm:flex sm:gap-4">
+                  <div className="sm:flex sm:gap-4">
                       <NavLink className="rounded-md border-primaryColor border-2 border-solid px-5 py-2 text-sm font-medium text-primaryColor shadow hover:bg-primaryColor hover:text-white hover:shadow-2xl" to="/login"> Login </NavLink>
                     <div className="hidden sm:flex">
                         <NavLink className="rounded-md bg-primaryColor px-5 py-2 text-sm font-medium text-white hover:drop-shadow-2xl" to="/signup"> Sign up </NavLink>
@@ -81,7 +83,7 @@ const Navbar = (props) => {
                     </svg>
                   </button>
                   <FaUserCircle className="max-md:hidden md:visible fill-gray-700 h-8 w-8 cursor-pointer" onClick={()=>setOpenMenu(true)}/>
-                  {openMenu && 
+                  {openMenu &&
                   <div className="absolute z-50 w-[250px] top-3/4 right-0 my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow-xl" onMouseLeave={()=>setOpenMenu(false)}>
                   <div className="px-4 py-3">
                     <span className="block text-sm text-gray-900">{user?.name}</span>
