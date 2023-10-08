@@ -3,7 +3,7 @@ const { where } = require("sequelize");
 const db = require("../sequelize/models");
 const Controller = require("./Controller");
 const bcrypt = require("bcrypt");
-// const mailer = require("../lib/nodemailer");
+const mailer = require("../lib/nodemailer");
 const fs = require("fs");
 const jwt = require("jsonwebtoken");
 const mustache = require(`mustache`);
@@ -67,9 +67,9 @@ class UserController extends Controller {
         const user = await this.db.findOne({
         where: { id },
         });
-        // const template = fs
-        // .readFileSync(__dirname + "/../template/verify.html")
-        // .toString();
+        const template = fs
+        .readFileSync(__dirname + "/../template/verify.html")
+        .toString();
 
         const token = jwt.sign(
         { id: user.id, is_verified: user.is_verified },
@@ -82,11 +82,11 @@ class UserController extends Controller {
         verify_url: process.env.verify_url + `${id}/` + token,
         });
 
-        // await mailer({
-        // subject: "Passify.io V2.0 Account Verification",
-        // to: user.email,
-        // html: renderTemplate,
-        // });
+        await mailer({
+        subject: "TicketNexa Account Verification",
+        to: user.email,
+        html: renderTemplate,
+        });
         await this.db.update({ verify_token: token }, { where: { id } });
 
         return res.send("Account Verification via Email has been sent");

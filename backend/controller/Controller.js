@@ -1,4 +1,3 @@
-//update isi controller nanti
 const db = require('../sequelize/models');
 
 class Controller {

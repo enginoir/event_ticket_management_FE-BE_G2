@@ -1,13 +1,13 @@
 const nodemailer = require("nodemailer");
 
-// const transporter = nodemailer.createTransport({
-//   auth: {
-//     user: ,
-//     pass: ,
-//   },
-//   host: "smtp.gmail.com",
-//   service: "gmail",
-// });
+const transporter = nodemailer.createTransport({
+  auth: {
+    user: process.env.passifyv2_nodemailer_id,
+    pass: process.env.passifyv2_nodemailer_password,
+  },
+  host: "smtp.gmail.com",
+  service: "gmail",
+});
 
 const mailer = async ({ subject, html, to, text }) => {
   await transporter.sendMail({
